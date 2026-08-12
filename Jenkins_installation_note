@@ -1,0 +1,49 @@
+Run the following commands sequentially to install Jenkins on your Ubuntu system.
+
+***********Use code with caution********************************************
+
+1. Install Java PrerequisitesJenkins is built on Java and requires it to run. Update your system and install OpenJDK 21 (or OpenJDK 17):
+
+sudo apt update
+sudo apt install -y fontconfig openjdk-21-jre
+
+
+
+2. Add the Official Jenkins RepositoryThe default Ubuntu repository packages are often outdated. Download the official Jenkins GPG signing key and add the stable repository to your package manager sources:bash
+
+# Create directory for the keyring
+sudo mkdir -p /etc/apt/keyrings
+
+# Download and add the signing key
+sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key
+
+# Register the Jenkins repository
+echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+Use code with caution.
+
+3. Install JenkinsRefresh your system's package list to recognize the new repository database and install Jenkins:bash
+
+sudo apt update
+sudo apt install -y jenkins
+Use code with caution.
+
+4. Manage the Jenkins ServiceStart the automation server and set it to launch automatically whenever your system boots:bashsudo systemctl start jenkins
+sudo systemctl enable Jenkins
+
+Use code with caution.
+
+To confirm that the service started successfully, run:bash
+sudo systemctl status Jenkins
+
+
+5. Access JenkinsIf your firewall is active, allow traffic through port 8080 (the default port for Jenkins):bash
+sudo ufw allow 8080
+
+
+Open your browser and navigate to http://your_server_ip:8080.To unlock the UI for the first time, retrieve your temporary setup password by executing this command in your terminal:
+
+**********
+Use code with caution.
+**********
+
